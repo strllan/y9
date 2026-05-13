@@ -11,37 +11,37 @@
       <section class="calculator-panel" aria-labelledby="page-title">
         <div class="title-row">
           <div>
-            <p class="eyebrow">joke math, serious spreadsheet energy</p>
-            <h1 id="page-title">compatibility test</h1>
+            <p class="eyebrow">AI website</p>
+            <h1 id="page-title">Compatibility Test</h1>
           </div>
           <div class="score-card" aria-live="polite">
-            <span>final</span>
+            <span>Final score</span>
             <strong id="finalScore">0.00%</strong>
           </div>
         </div>
 
         <div class="controls" aria-label="choose two people">
           <label>
-            <span>person a</span>
+            <span>Person A</span>
             <select id="personA"></select>
           </label>
           <button id="swapButton" type="button" aria-label="swap people" title="Swap people">⇄</button>
           <label>
-            <span>person b</span>
+            <span>Person B</span>
             <select id="personB"></select>
           </label>
         </div>
 
         <div class="direction-grid">
           <article>
-            <span>b-to-a</span>
+            <span>Person B to Person A</span>
             <strong id="bToA">0.00%</strong>
-            <p>what person b wants checked against person a</p>
+            <p>Person B's preferences checked against Person A's answers.</p>
           </article>
           <article>
-            <span>a-to-b</span>
+            <span>Person A to Person B</span>
             <strong id="aToB">0.00%</strong>
-            <p>what person a wants checked against person b</p>
+            <p>Person A's preferences checked against Person B's answers.</p>
           </article>
         </div>
 
@@ -49,13 +49,13 @@
           <table>
             <thead>
               <tr>
-                <th>question</th>
-                <th>b wants</th>
-                <th>a answer</th>
-                <th>b-to-a</th>
-                <th>a wants</th>
-                <th>b answer</th>
-                <th>a-to-b</th>
+                <th>Question</th>
+                <th>B wants</th>
+                <th>A's answer</th>
+                <th>B-to-A</th>
+                <th>A wants</th>
+                <th>B's answer</th>
+                <th>A-to-B</th>
               </tr>
             </thead>
             <tbody id="breakdownRows"></tbody>
@@ -64,22 +64,13 @@
       </section>
 
       <aside class="side-panel">
-        <img
-          src="outputs/compatibility_test/calculator_preview.png"
-          alt="Spreadsheet preview of the compatibility calculator"
-        />
-        <section>
-          <h2>rules</h2>
-          <ul>
-            <li>care: D 5, N 10, I 15, M 40</li>
-            <li>strong answer: full points</li>
-            <li>weak answer: 0.75x points</li>
-            <li>final: square root of both directions multiplied</li>
-          </ul>
-        </section>
-        <section>
-          <h2>top matches</h2>
+        <section class="match-list-panel">
+          <h2>Top Matches</h2>
           <ol id="topMatches"></ol>
+        </section>
+        <section class="match-list-panel">
+          <h2>Least Compatible Matches</h2>
+          <ol id="leastMatches"></ol>
         </section>
       </aside>
     </main>
