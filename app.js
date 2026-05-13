@@ -173,7 +173,7 @@ function renderTopMatches() {
     .sort((left, right) => right.final - left.final);
 
   topMatches.replaceChildren(
-    ...ranked.slice(0, 15).map((match) => {
+    ...ranked.map((match) => {
       const item = document.createElement("li");
       item.innerHTML = `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`;
       return item;
@@ -181,7 +181,7 @@ function renderTopMatches() {
   );
 
   leastMatches.replaceChildren(
-    ...ranked.slice(-15).reverse().map((match) => {
+    ...ranked.toReversed().map((match) => {
       const item = document.createElement("li");
       item.innerHTML = `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`;
       return item;
@@ -204,7 +204,7 @@ function renderTopMatches() {
     .sort((left, right) => right.score - left.score);
 
   topSingles.replaceChildren(
-    ...singleRankings.slice(0, 15).map((single) => {
+    ...singleRankings.map((single) => {
       const item = document.createElement("li");
       item.innerHTML = `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`;
       return item;
@@ -212,7 +212,7 @@ function renderTopMatches() {
   );
 
   leastSingles.replaceChildren(
-    ...singleRankings.slice(-15).reverse().map((single) => {
+    ...singleRankings.toReversed().map((single) => {
       const item = document.createElement("li");
       item.innerHTML = `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`;
       return item;
