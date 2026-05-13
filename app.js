@@ -188,21 +188,25 @@ function renderTopMatches() {
     }),
   );
 
-  const singleRankings = people
-    .map(([group, name]) => {
-      const oppositeNames = (group === "boy" ? girls : boys);
-      const scores = oppositeNames.map((otherName) =>
-        group === "boy" ? scorePair(name, otherName).final : scorePair(otherName, name).final,
-      );
-      const average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
-      return { name, average };
-    })
-    .sort((left, right) => right.average - left.average);
+  const singleRankings = ranked
+    .flatMap((match) => [
+      {
+        from: match.a.name,
+        to: match.b.name,
+        score: match.aDirection.total,
+      },
+      {
+        from: match.b.name,
+        to: match.a.name,
+        score: match.bDirection.total,
+      },
+    ])
+    .sort((left, right) => right.score - left.score);
 
   topSingles.replaceChildren(
     ...singleRankings.slice(0, 15).map((single) => {
       const item = document.createElement("li");
-      item.innerHTML = `<strong>${single.name}</strong><span class="match-score">${percent(single.average)} average</span>`;
+      item.innerHTML = `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`;
       return item;
     }),
   );
@@ -210,7 +214,7 @@ function renderTopMatches() {
   leastSingles.replaceChildren(
     ...singleRankings.slice(-15).reverse().map((single) => {
       const item = document.createElement("li");
-      item.innerHTML = `<strong>${single.name}</strong><span class="match-score">${percent(single.average)} average</span>`;
+      item.innerHTML = `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`;
       return item;
     }),
   );
