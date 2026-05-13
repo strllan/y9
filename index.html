@@ -7,12 +7,39 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <header class="hero-header">
+      <div class="hero-inner">
+        <p class="eyebrow">AI website</p>
+        <h1 id="page-title">Compatibility Test</h1>
+        <p class="hero-copy">A very serious compatibility calculator for very unserious data.</p>
+      </div>
+    </header>
+
     <main class="app-shell">
-      <section class="calculator-panel" aria-labelledby="page-title">
+      <section class="rankings-board" aria-label="match rankings">
+        <article class="match-list-panel">
+          <h2>Top Matches</h2>
+          <ol id="topMatches"></ol>
+        </article>
+        <article class="match-list-panel">
+          <h2>Least Compatible Matches</h2>
+          <ol id="leastMatches"></ol>
+        </article>
+        <article class="match-list-panel">
+          <h2>Top Single Matches</h2>
+          <ol id="topSingles"></ol>
+        </article>
+        <article class="match-list-panel">
+          <h2>Least Single Matches</h2>
+          <ol id="leastSingles"></ol>
+        </article>
+      </section>
+
+      <section class="calculator-panel" aria-labelledby="calculator-title">
         <div class="title-row">
           <div>
-            <p class="eyebrow">AI website</p>
-            <h1 id="page-title">Compatibility Test</h1>
+            <p class="eyebrow">Pair calculator</p>
+            <h2 id="calculator-title">Check Two People</h2>
           </div>
           <div class="score-card" aria-live="polite">
             <span>Final score</span>
@@ -62,17 +89,6 @@
           </table>
         </div>
       </section>
-
-      <aside class="side-panel">
-        <section class="match-list-panel">
-          <h2>Top Matches</h2>
-          <ol id="topMatches"></ol>
-        </section>
-        <section class="match-list-panel">
-          <h2>Least Compatible Matches</h2>
-          <ol id="leastMatches"></ol>
-        </section>
-      </aside>
     </main>
 
     <script src="app.js"></script>

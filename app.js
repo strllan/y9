@@ -65,6 +65,8 @@ const aToB = document.querySelector("#aToB");
 const breakdownRows = document.querySelector("#breakdownRows");
 const topMatches = document.querySelector("#topMatches");
 const leastMatches = document.querySelector("#leastMatches");
+const topSingles = document.querySelector("#topSingles");
+const leastSingles = document.querySelector("#leastSingles");
 const swapButton = document.querySelector("#swapButton");
 
 function parseCode(rawCode) {
@@ -182,6 +184,33 @@ function renderTopMatches() {
     ...ranked.slice(-15).reverse().map((match) => {
       const item = document.createElement("li");
       item.innerHTML = `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`;
+      return item;
+    }),
+  );
+
+  const singleRankings = people
+    .map(([group, name]) => {
+      const oppositeNames = (group === "boy" ? girls : boys);
+      const scores = oppositeNames.map((otherName) =>
+        group === "boy" ? scorePair(name, otherName).final : scorePair(otherName, name).final,
+      );
+      const average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+      return { name, average };
+    })
+    .sort((left, right) => right.average - left.average);
+
+  topSingles.replaceChildren(
+    ...singleRankings.slice(0, 15).map((single) => {
+      const item = document.createElement("li");
+      item.innerHTML = `<strong>${single.name}</strong><span class="match-score">${percent(single.average)} average</span>`;
+      return item;
+    }),
+  );
+
+  leastSingles.replaceChildren(
+    ...singleRankings.slice(-15).reverse().map((single) => {
+      const item = document.createElement("li");
+      item.innerHTML = `<strong>${single.name}</strong><span class="match-score">${percent(single.average)} average</span>`;
       return item;
     }),
   );
