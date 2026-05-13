@@ -33,7 +33,7 @@ select {
 }
 
 .app-shell {
-  width: min(1360px, calc(100% - 32px));
+  width: min(1800px, calc(100% - 32px));
   margin: 0 auto 28px;
   display: grid;
   gap: 18px;
@@ -62,15 +62,16 @@ select {
 }
 
 .calculator-panel {
+  width: min(1360px, 100%);
+  margin: 18px auto 0;
   padding: 22px;
 }
 
 .rankings-board {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
   align-items: start;
-  margin-top: 18px;
 }
 
 .title-row {
