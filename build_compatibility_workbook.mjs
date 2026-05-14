@@ -29,7 +29,7 @@ const people = [
   ["Boy", "Will", "N^=D", "L-", "S-=I", "N-=D", "W^AI", "N-=N", "D-=M", "K-TN", "A^"],
   ["Boy", "JT", "N^=I", "R^=N", "L-", "Y-=D", "A^=I", "Y^ND", "S-", "T^=M", "A-=N"],
   ["Boy", "Leo", "N^=D", "L^=M", "L-=N", "Y-=I", "A^=I", "N^=D", "S-DN", "T-=I", "A^"],
-  ["Boy", "James", "N-=D", "L^=M", "S-=D", "Y-", "A^", "N-", "D-=I", "T-=I", "A-=N"],
+  ["Boy", "James", "N-=D", "L^=M", "L-=D", "Y-", "A^", "N-", "D-SI", "T-=I", "A-=N"],
   ["Boy", "Ayaan", "N^=N", "L^=M", "L^=I", "Y-", "I^", "Y^NI", "D^=N", "T-=D", "A^=D"],
   ["Girl", "Jasmine", "Y^=M", "R-=I", "S^=I", "N-", "A^", "N^=D", "S-Dd", "K^TN", "A^=N"],
   ["Girl", "Cathleen", "N^=I", "L^=D", "S-LD", "N-=M", "A^=N", "Y^", "D-SN", "T^", "A^=I"],
