@@ -205,6 +205,14 @@ h1 {
   letter-spacing: 0;
 }
 
+.hero-copy {
+  margin: 28px 0 0;
+  color: #6c7782;
+  font-size: clamp(1rem, 2.2vw, 1.45rem);
+  line-height: 1.35;
+  text-transform: lowercase;
+}
+
 h2 {
   margin-bottom: 0;
   font-size: clamp(2rem, 4vw, 4rem);
