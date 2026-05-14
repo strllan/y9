@@ -23,9 +23,10 @@ const questionLabels = {
 };
 
 const people = [
+  ["boy", "joshuah", "N-", "L-=I", "S^=I", "Y-=N", "A^=D", "Y-NM", "S-=D", "T-=N", "A-"],
   ["boy", "alex", "N^=N", "R-=N", "L^=I", "Y^=I", "A^=M", "Y-", "S-DD", "T^=D", "A-"],
   ["boy", "ethan", "Y^=M", "R^=N", "S-LN", "Y-=D", "A^=I", "Y-", "S-=D", "T^KI", "N-"],
-  ["boy", "liam", "N^=D", "L-=N", "L-=I", "Y-", "A^=M", "N-=I", "S-DD", "T^=N", "A-"],
+  ["boy", "liam", "Y-", "L-=N", "L-=I", "Y-", "A^=M", "N-=I", "S-DD", "T^=N", "A-"],
   ["boy", "arthur", "N-", "R-LN", "S-=N", "Y^=I", "A^", "N-=D", "S-DN", "T^KM", "A-=D"],
   ["boy", "harry", "N-=N", "R-", "S^=M", "Y^=I", "A^=N", "N^=D", "S^DN", "T-=I", "N-"],
   ["boy", "lawrence", "N-=D", "R-", "S^=I", "Y-=N", "A^=M", "Y-", "S-=N", "T-KD", "N-"],
@@ -63,10 +64,6 @@ const finalScore = document.querySelector("#finalScore");
 const bToA = document.querySelector("#bToA");
 const aToB = document.querySelector("#aToB");
 const breakdownRows = document.querySelector("#breakdownRows");
-const topMatches = document.querySelector("#topMatches");
-const leastMatches = document.querySelector("#leastMatches");
-const topSingles = document.querySelector("#topSingles");
-const leastSingles = document.querySelector("#leastSingles");
 const swapButton = document.querySelector("#swapButton");
 
 function parseCode(rawCode) {
@@ -165,30 +162,30 @@ function renderCalculator() {
   );
 }
 
-function renderTopMatches() {
-  const boys = people.filter(([group]) => group === "boy").map(([, name]) => name);
-  const girls = people.filter(([group]) => group === "girl").map(([, name]) => name);
-  const ranked = boys
-    .flatMap((boy) => girls.map((girl) => scorePair(boy, girl)))
-    .sort((left, right) => right.final - left.final);
+function makePairRankings(firstNames, secondNames, sameGroup = false) {
+  const pairs = [];
+  for (let i = 0; i < firstNames.length; i += 1) {
+    const start = sameGroup ? i + 1 : 0;
+    for (let j = start; j < secondNames.length; j += 1) {
+      pairs.push(scorePair(firstNames[i], secondNames[j]));
+    }
+  }
+  return pairs.sort((left, right) => right.final - left.final);
+}
 
-  topMatches.replaceChildren(
-    ...ranked.map((match) => {
+function renderList(targetId, entries, renderEntry) {
+  const target = document.querySelector(`#${targetId}`);
+  target.replaceChildren(
+    ...entries.map((entry) => {
       const item = document.createElement("li");
-      item.innerHTML = `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`;
+      item.innerHTML = renderEntry(entry);
       return item;
     }),
   );
+}
 
-  leastMatches.replaceChildren(
-    ...ranked.toReversed().map((match) => {
-      const item = document.createElement("li");
-      item.innerHTML = `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`;
-      return item;
-    }),
-  );
-
-  const singleRankings = ranked
+function renderRankingBoard(prefix, ranked) {
+  const oneWay = ranked
     .flatMap((match) => [
       {
         from: match.a.name,
@@ -203,21 +200,27 @@ function renderTopMatches() {
     ])
     .sort((left, right) => right.score - left.score);
 
-  topSingles.replaceChildren(
-    ...singleRankings.map((single) => {
-      const item = document.createElement("li");
-      item.innerHTML = `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`;
-      return item;
-    }),
+  renderList(`${prefix}TopMatches`, ranked, (match) =>
+    `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`,
   );
+  renderList(`${prefix}LeastMatches`, [...ranked].reverse(), (match) =>
+    `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`,
+  );
+  renderList(`${prefix}TopSingles`, oneWay, (single) =>
+    `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`,
+  );
+  renderList(`${prefix}LeastSingles`, [...oneWay].reverse(), (single) =>
+    `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`,
+  );
+}
 
-  leastSingles.replaceChildren(
-    ...singleRankings.toReversed().map((single) => {
-      const item = document.createElement("li");
-      item.innerHTML = `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`;
-      return item;
-    }),
-  );
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach((page) => {
+    page.classList.toggle("active", page.id === pageId);
+  });
+  document.querySelectorAll("[data-page-link]").forEach((control) => {
+    control.classList.toggle("active", control.dataset.pageLink === pageId);
+  });
 }
 
 for (const [, name] of people) {
@@ -234,5 +237,17 @@ swapButton.addEventListener("click", () => {
   renderCalculator();
 });
 
+document.querySelectorAll("[data-page-link]").forEach((control) => {
+  control.addEventListener("click", (event) => {
+    event.preventDefault();
+    showPage(control.dataset.pageLink);
+  });
+});
+
+const boys = people.filter(([group]) => group === "boy").map(([, name]) => name);
+const girls = people.filter(([group]) => group === "girl").map(([, name]) => name);
+
 renderCalculator();
-renderTopMatches();
+renderRankingBoard("boyGirl", makePairRankings(boys, girls));
+renderRankingBoard("boyBoy", makePairRankings(boys, boys, true));
+renderRankingBoard("girlGirl", makePairRankings(girls, girls, true));

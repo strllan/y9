@@ -17,9 +17,10 @@ const questions = [
 ];
 
 const people = [
+  ["Boy", "joshuah", "N-", "L-=I", "S^=I", "Y-=N", "A^=D", "Y-NM", "S-=D", "T-=N", "A-"],
   ["Boy", "Alex", "N^=N", "R-=N", "L^=I", "Y-=I", "A^=M", "Y-", "S-DD", "T^=D", "A-"],
   ["Boy", "Ethan", "Y^=M", "R^=N", "S-LN", "Y-=D", "A^=I", "Y-", "S-=D", "T^KI", "N-"],
-  ["Boy", "Liam", "Y^=D", "L-=N", "L-=I", "Y-", "A^=M", "N-=I", "S-DD", "T^=N", "A-"],
+  ["Boy", "Liam", "Y-", "L-=N", "L-=I", "Y-", "A^=M", "N-=I", "S-DD", "T^=N", "A-"],
   ["Boy", "Arthur", "N-", "R-LN", "S-=N", "Y^=I", "A^", "N-=D", "S-DN", "T^KM", "A-=D"],
   ["Boy", "Harry", "N-=N", "R-", "S^=M", "Y^=I", "A^=N", "N^=D", "S^DN", "T-=I", "N-"],
   ["Boy", "Lawrence", "N-=D", "R-", "S^=I", "Y-=N", "A^=M", "Y-", "S-=N", "T-KD", "N-"],

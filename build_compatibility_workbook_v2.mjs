@@ -6,9 +6,10 @@ await fs.mkdir(outputDir, { recursive: true });
 
 const questions = ["God", "Politics", "Marriage", "Children", "Ethicity", "Past", "D/S", "True/kind", "Animal"];
 const people = [
+  ["Boy", "joshuah", "N-", "L-=I", "S^=I", "Y-=N", "A^=D", "Y-NM", "S-=D", "T-=N", "A-"],
   ["Boy", "alex", "N^=N", "R-=N", "L^=I", "Y^=I", "A^=M", "Y-", "S-DD", "T^=D", "A-"],
   ["Boy", "ethan", "Y^=M", "R^=N", "S-LN", "Y-=D", "A^=I", "Y-", "S-=D", "T^KI", "N-"],
-  ["Boy", "liam", "Y^=D", "L-=N", "L-=I", "Y-", "A^=M", "N-=I", "S-DD", "T^=N", "A-"],
+  ["Boy", "liam", "Y-", "L-=N", "L-=I", "Y-", "A^=M", "N-=I", "S-DD", "T^=N", "A-"],
   ["Boy", "arthur", "N-", "R-LN", "S-=N", "Y^=I", "A^", "N-=D", "S-DN", "T^KM", "A-=D"],
   ["Boy", "harry", "N-=N", "R-", "S^=M", "Y^=I", "A^=N", "N^=D", "S^DN", "T-=I", "N-"],
   ["Boy", "lawrence", "N-=D", "R-", "S^=I", "Y-=N", "A^=M", "Y-", "S-=N", "T-KD", "N-"],

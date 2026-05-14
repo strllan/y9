@@ -4,93 +4,161 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Compatibility Test</title>
-    <link rel="stylesheet" href="styles.css?v=9" />
+    <link rel="stylesheet" href="styles.css?v=10" />
   </head>
   <body>
-    <header class="hero-header">
-      <div class="hero-inner">
-        <p class="eyebrow">AI website</p>
-        <h1 id="page-title">Compatibility Test</h1>
-        <p class="hero-copy">scroll down for slop (im sorry if ur not straight)</p>
+    <nav class="top-bar" aria-label="site sections">
+      <a class="brand" href="#home" data-page-link="home">AI website</a>
+      <div class="nav-links">
+        <button type="button" class="active" data-page-link="home">Home</button>
+        <button type="button" data-page-link="calculator">Pair Calculator</button>
+        <button type="button" data-page-link="boyGirl">Boy-Girl</button>
+        <button type="button" data-page-link="boyBoy">Boy-Boy</button>
+        <button type="button" data-page-link="girlGirl">Girl-Girl</button>
       </div>
-    </header>
+    </nav>
 
-    <main class="app-shell">
-      <section class="calculator-panel" aria-labelledby="calculator-title">
-        <div class="title-row">
-          <div>
-            <p class="eyebrow">Pair calculator</p>
-            <h2 id="calculator-title">Check Two People</h2>
-          </div>
-          <div class="score-card" aria-live="polite">
-            <span>Final score</span>
-            <strong id="finalScore">0.00%</strong>
-          </div>
-        </div>
-
-        <div class="controls" aria-label="choose two people">
-          <label>
-            <span>Person A</span>
-            <select id="personA"></select>
-          </label>
-          <button id="swapButton" type="button" aria-label="swap people" title="Swap people">⇄</button>
-          <label>
-            <span>Person B</span>
-            <select id="personB"></select>
-          </label>
-        </div>
-
-        <div class="direction-grid">
-          <article>
-            <span>Person B to Person A</span>
-            <strong id="bToA">0.00%</strong>
-            <p>Person B's preferences checked against Person A's answers.</p>
-          </article>
-          <article>
-            <span>Person A to Person B</span>
-            <strong id="aToB">0.00%</strong>
-            <p>Person A's preferences checked against Person B's answers.</p>
-          </article>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Question</th>
-                <th>B wants</th>
-                <th>A's answer</th>
-                <th>B-to-A</th>
-                <th>A wants</th>
-                <th>B's answer</th>
-                <th>A-to-B</th>
-              </tr>
-            </thead>
-            <tbody id="breakdownRows"></tbody>
-          </table>
+    <main>
+      <section id="home" class="page page-home active" aria-labelledby="page-title">
+        <div class="hero-inner">
+          <p class="eyebrow">AI website</p>
+          <h1 id="page-title">Compatibility Test</h1>
         </div>
       </section>
 
-      <section class="rankings-board" aria-label="match rankings">
-        <article class="match-list-panel">
-          <h2>Top Matches</h2>
-          <ol id="topMatches"></ol>
-        </article>
-        <article class="match-list-panel">
-          <h2>Least Compatible Matches</h2>
-          <ol id="leastMatches"></ol>
-        </article>
-        <article class="match-list-panel">
-          <h2>Top One-Way Matches</h2>
-          <ol id="topSingles"></ol>
-        </article>
-        <article class="match-list-panel">
-          <h2>Least One-Way Matches</h2>
-          <ol id="leastSingles"></ol>
-        </article>
+      <section id="calculator" class="page app-shell" aria-labelledby="calculator-title">
+        <section class="calculator-panel">
+          <div class="title-row">
+            <div>
+              <p class="eyebrow">Pair calculator</p>
+              <h2 id="calculator-title">Check Two People</h2>
+            </div>
+            <div class="score-card" aria-live="polite">
+              <span>Final score</span>
+              <strong id="finalScore">0.00%</strong>
+            </div>
+          </div>
+
+          <div class="controls" aria-label="choose two people">
+            <label>
+              <span>Person A</span>
+              <select id="personA"></select>
+            </label>
+            <button id="swapButton" type="button" aria-label="swap people" title="Swap people">⇄</button>
+            <label>
+              <span>Person B</span>
+              <select id="personB"></select>
+            </label>
+          </div>
+
+          <div class="direction-grid">
+            <article>
+              <span>Person B to Person A</span>
+              <strong id="bToA">0.00%</strong>
+              <p>Person B's preferences checked against Person A's answers.</p>
+            </article>
+            <article>
+              <span>Person A to Person B</span>
+              <strong id="aToB">0.00%</strong>
+              <p>Person A's preferences checked against Person B's answers.</p>
+            </article>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>B wants</th>
+                  <th>A's answer</th>
+                  <th>B-to-A</th>
+                  <th>A wants</th>
+                  <th>B's answer</th>
+                  <th>A-to-B</th>
+                </tr>
+              </thead>
+              <tbody id="breakdownRows"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section id="boyGirl" class="page app-shell" aria-labelledby="boy-girl-title">
+        <header class="page-heading">
+          <p class="eyebrow">rankings</p>
+          <h2 id="boy-girl-title">Boy-Girl Matches</h2>
+        </header>
+        <section class="rankings-board" aria-label="boy-girl match rankings">
+          <article class="match-list-panel">
+            <h3>Top Matches</h3>
+            <ol id="boyGirlTopMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least Compatible Matches</h3>
+            <ol id="boyGirlLeastMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Top One-Way Matches</h3>
+            <ol id="boyGirlTopSingles"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least One-Way Matches</h3>
+            <ol id="boyGirlLeastSingles"></ol>
+          </article>
+        </section>
+      </section>
+
+      <section id="boyBoy" class="page app-shell" aria-labelledby="boy-boy-title">
+        <header class="page-heading">
+          <p class="eyebrow">rankings</p>
+          <h2 id="boy-boy-title">Boy-Boy Matches</h2>
+        </header>
+        <section class="rankings-board" aria-label="boy-boy match rankings">
+          <article class="match-list-panel">
+            <h3>Top Matches</h3>
+            <ol id="boyBoyTopMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least Compatible Matches</h3>
+            <ol id="boyBoyLeastMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Top One-Way Matches</h3>
+            <ol id="boyBoyTopSingles"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least One-Way Matches</h3>
+            <ol id="boyBoyLeastSingles"></ol>
+          </article>
+        </section>
+      </section>
+
+      <section id="girlGirl" class="page app-shell" aria-labelledby="girl-girl-title">
+        <header class="page-heading">
+          <p class="eyebrow">rankings</p>
+          <h2 id="girl-girl-title">Girl-Girl Matches</h2>
+        </header>
+        <section class="rankings-board" aria-label="girl-girl match rankings">
+          <article class="match-list-panel">
+            <h3>Top Matches</h3>
+            <ol id="girlGirlTopMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least Compatible Matches</h3>
+            <ol id="girlGirlLeastMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Top One-Way Matches</h3>
+            <ol id="girlGirlTopSingles"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least One-Way Matches</h3>
+            <ol id="girlGirlLeastSingles"></ol>
+          </article>
+        </section>
       </section>
     </main>
 
-    <script src="app.js?v=9"></script>
+    <script src="app.js?v=10"></script>
   </body>
 </html>
