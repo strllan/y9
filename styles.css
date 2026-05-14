@@ -153,22 +153,23 @@ select {
   transform: translateY(-2px);
 }
 
-.calculator-panel,
-.selector-panel {
+.calculator-panel {
   width: min(1360px, 100%);
   margin: 0 auto;
   padding: 22px;
 }
 
 .selector-panel {
+  width: min(420px, 100%);
+  padding: 12px;
   display: grid;
-  grid-template-columns: minmax(220px, 360px);
+  grid-template-columns: 1fr;
 }
 
 .rankings-board {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 10px;
   align-items: start;
 }
 
@@ -211,8 +212,8 @@ h2 {
 }
 
 h3 {
-  margin-bottom: 12px;
-  font-size: 1.08rem;
+  margin-bottom: 8px;
+  font-size: 0.98rem;
 }
 
 .page-heading {
@@ -363,19 +364,41 @@ tr.match {
 .match-list-panel {
   border: 1px solid var(--line);
   background: var(--wash);
-  padding: 14px;
+  min-width: 0;
+  max-height: min(680px, calc(100svh - 340px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 10px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 115, 92, 0.4) transparent;
+}
+
+#averages .match-list-panel {
+  max-height: min(720px, calc(100svh - 240px));
+}
+
+.match-list-panel h3 {
+  position: sticky;
+  z-index: 1;
+  top: -10px;
+  margin: -10px -12px 8px;
+  padding: 10px 12px 8px;
+  background: rgba(244, 247, 249, 0.96);
+  border-bottom: 1px solid rgba(23, 32, 42, 0.08);
 }
 
 ol {
   margin: 0;
-  padding-left: 20px;
+  padding-left: 18px;
 }
 
 li {
-  margin: 9px 0;
-  padding-bottom: 9px;
+  margin: 5px 0;
+  padding-bottom: 5px;
   border-bottom: 1px solid rgba(23, 32, 42, 0.1);
   color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.18;
   animation: listIn 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   animation-delay: calc(min(var(--i, 0), 22) * 18ms);
   transition:
@@ -399,8 +422,9 @@ li:last-child {
 
 .match-score {
   display: block;
-  margin-top: 2px;
+  margin-top: 0;
   color: var(--green);
+  font-size: 0.96rem;
   font-weight: 800;
 }
 
@@ -521,11 +545,20 @@ li:last-child {
     padding: 16px;
   }
 
+  .selector-panel {
+    width: 100%;
+  }
+
   .rankings-board,
   .title-row,
   .controls,
   .direction-grid {
     grid-template-columns: 1fr;
+  }
+
+  .match-list-panel,
+  #averages .match-list-panel {
+    max-height: 62svh;
   }
 
   .title-row {
