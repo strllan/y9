@@ -4,14 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Compatibility Test</title>
-    <link rel="stylesheet" href="styles.css?v=10" />
+    <link rel="stylesheet" href="styles.css?v=11" />
   </head>
   <body>
     <nav class="top-bar" aria-label="site sections">
-      <a class="brand" href="#home" data-page-link="home">AI website</a>
       <div class="nav-links">
         <button type="button" class="active" data-page-link="home">Home</button>
         <button type="button" data-page-link="calculator">Pair Calculator</button>
+        <button type="button" data-page-link="averages">Averages</button>
+        <button type="button" data-page-link="selfCheck">Self-Check</button>
         <button type="button" data-page-link="boyGirl">Boy-Girl</button>
         <button type="button" data-page-link="boyBoy">Boy-Boy</button>
         <button type="button" data-page-link="girlGirl">Girl-Girl</button>
@@ -80,6 +81,62 @@
               <tbody id="breakdownRows"></tbody>
             </table>
           </div>
+        </section>
+      </section>
+
+      <section id="averages" class="page app-shell" aria-labelledby="averages-title">
+        <header class="page-heading">
+          <p class="eyebrow">rankings</p>
+          <h2 id="averages-title">Averages</h2>
+        </header>
+        <section class="rankings-board" aria-label="average rankings">
+          <article class="match-list-panel">
+            <h3>Top Match Averages</h3>
+            <ol id="averageTopMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least Match Averages</h3>
+            <ol id="averageLeastMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Top One-Way Averages</h3>
+            <ol id="averageTopSingles"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Least One-Way Averages</h3>
+            <ol id="averageLeastSingles"></ol>
+          </article>
+        </section>
+      </section>
+
+      <section id="selfCheck" class="page app-shell" aria-labelledby="self-check-title">
+        <header class="page-heading">
+          <p class="eyebrow">self-check</p>
+          <h2 id="self-check-title">Self-Check</h2>
+        </header>
+        <section class="selector-panel">
+          <label>
+            <span>Person</span>
+            <select id="selfPerson"></select>
+          </label>
+        </section>
+        <section class="rankings-board" aria-label="self-check rankings">
+          <article class="match-list-panel">
+            <h3>Top Matches Against Girls</h3>
+            <ol id="selfGirlMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Top Matches Against Boys</h3>
+            <ol id="selfBoyMatches"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Top One-Way Against Girls</h3>
+            <ol id="selfGirlSingles"></ol>
+          </article>
+          <article class="match-list-panel">
+            <h3>Top One-Way Against Boys</h3>
+            <ol id="selfBoySingles"></ol>
+          </article>
         </section>
       </section>
 
@@ -159,6 +216,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=10"></script>
+    <script src="app.js?v=11"></script>
   </body>
 </html>

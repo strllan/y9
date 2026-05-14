@@ -39,20 +39,12 @@ select {
   min-height: 62px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
   padding: 10px 18px;
   border-bottom: 1px solid rgba(23, 32, 42, 0.12);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(18px);
-}
-
-.brand {
-  flex: 0 0 auto;
-  color: var(--green);
-  font-weight: 900;
-  text-decoration: none;
-  text-transform: uppercase;
 }
 
 .nav-links {
@@ -127,16 +119,23 @@ select {
 }
 
 .calculator-panel,
+.selector-panel,
 .rankings-board article {
   background: var(--panel);
   border: 1px solid rgba(23, 32, 42, 0.12);
   box-shadow: 0 18px 50px rgba(23, 32, 42, 0.08);
 }
 
-.calculator-panel {
+.calculator-panel,
+.selector-panel {
   width: min(1360px, 100%);
   margin: 0 auto;
   padding: 22px;
+}
+
+.selector-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 360px);
 }
 
 .rankings-board {
@@ -358,9 +357,7 @@ li:last-child {
 
 @media (max-width: 720px) {
   .top-bar {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
     padding: 10px;
   }
 

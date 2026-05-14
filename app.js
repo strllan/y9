@@ -60,6 +60,7 @@ const byName = new Map(
 
 const personA = document.querySelector("#personA");
 const personB = document.querySelector("#personB");
+const selfPerson = document.querySelector("#selfPerson");
 const finalScore = document.querySelector("#finalScore");
 const bToA = document.querySelector("#bToA");
 const aToB = document.querySelector("#aToB");
@@ -184,6 +185,71 @@ function renderList(targetId, entries, renderEntry) {
   );
 }
 
+function getPairScoreForPerson(personName, otherName) {
+  const person = byName.get(personName);
+  return person.group === "boy" ? scorePair(personName, otherName) : scorePair(otherName, personName);
+}
+
+function getOneWayScore(personName, otherName) {
+  return scoreDirectional(byName.get(personName), byName.get(otherName)).total;
+}
+
+function average(values) {
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function renderAverages() {
+  const averageRankings = people
+    .map(([, name]) => {
+      const others = people.map(([, otherName]) => otherName).filter((otherName) => otherName !== name);
+      const matchAverage = average(others.map((otherName) => getPairScoreForPerson(name, otherName).final));
+      const oneWayAverage = average(others.map((otherName) => getOneWayScore(name, otherName)));
+      return { name, matchAverage, oneWayAverage };
+    })
+    .sort((left, right) => right.matchAverage - left.matchAverage);
+
+  const oneWayAverageRankings = [...averageRankings].sort((left, right) => right.oneWayAverage - left.oneWayAverage);
+
+  renderList("averageTopMatches", averageRankings, (entry) =>
+    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.matchAverage)} average</span>`,
+  );
+  renderList("averageLeastMatches", [...averageRankings].reverse(), (entry) =>
+    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.matchAverage)} average</span>`,
+  );
+  renderList("averageTopSingles", oneWayAverageRankings, (entry) =>
+    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.oneWayAverage)} average</span>`,
+  );
+  renderList("averageLeastSingles", [...oneWayAverageRankings].reverse(), (entry) =>
+    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.oneWayAverage)} average</span>`,
+  );
+}
+
+function renderSelfCheck() {
+  const selectedName = selfPerson.value;
+  const selectedGroup = byName.get(selectedName).group;
+
+  const rankMatches = (targetGroup) =>
+    people
+      .filter(([group, name]) => group === targetGroup && name !== selectedName)
+      .map(([, name]) => ({ name, score: getPairScoreForPerson(selectedName, name).final }))
+      .sort((left, right) => right.score - left.score);
+
+  const rankOneWay = (targetGroup) =>
+    people
+      .filter(([group, name]) => group === targetGroup && name !== selectedName)
+      .map(([, name]) => ({ name, score: getOneWayScore(selectedName, name) }))
+      .sort((left, right) => right.score - left.score);
+
+  const renderSelfEntry = (entry) => `<strong>${entry.name}</strong><span class="match-score">${percent(entry.score)}</span>`;
+
+  renderList("selfGirlMatches", rankMatches("girl"), renderSelfEntry);
+  renderList("selfBoyMatches", rankMatches("boy"), renderSelfEntry);
+  renderList("selfGirlSingles", rankOneWay("girl"), renderSelfEntry);
+  renderList("selfBoySingles", rankOneWay("boy"), renderSelfEntry);
+
+  document.querySelector("#self-check-title").textContent = `${selectedName} Self-Check`;
+}
+
 function renderRankingBoard(prefix, ranked) {
   const oneWay = ranked
     .flatMap((match) => [
@@ -226,12 +292,15 @@ function showPage(pageId) {
 for (const [, name] of people) {
   personA.append(option(name));
   personB.append(option(name));
+  selfPerson.append(option(name));
 }
 
 personA.value = "tony";
 personB.value = "jasmine";
+selfPerson.value = "tony";
 personA.addEventListener("change", renderCalculator);
 personB.addEventListener("change", renderCalculator);
+selfPerson.addEventListener("change", renderSelfCheck);
 swapButton.addEventListener("click", () => {
   [personA.value, personB.value] = [personB.value, personA.value];
   renderCalculator();
@@ -248,6 +317,8 @@ const boys = people.filter(([group]) => group === "boy").map(([, name]) => name)
 const girls = people.filter(([group]) => group === "girl").map(([, name]) => name);
 
 renderCalculator();
+renderAverages();
+renderSelfCheck();
 renderRankingBoard("boyGirl", makePairRankings(boys, girls));
 renderRankingBoard("boyBoy", makePairRankings(boys, boys, true));
 renderRankingBoard("girlGirl", makePairRankings(girls, girls, true));
