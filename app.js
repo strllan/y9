@@ -177,9 +177,10 @@ function makePairRankings(firstNames, secondNames, sameGroup = false) {
 function renderList(targetId, entries, renderEntry) {
   const target = document.querySelector(`#${targetId}`);
   target.replaceChildren(
-    ...entries.map((entry) => {
+    ...entries.map((entry, index) => {
       const item = document.createElement("li");
       item.innerHTML = renderEntry(entry);
+      item.style.setProperty("--i", index);
       return item;
     }),
   );
@@ -287,6 +288,7 @@ function showPage(pageId) {
   document.querySelectorAll("[data-page-link]").forEach((control) => {
     control.classList.toggle("active", control.dataset.pageLink === pageId);
   });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 for (const [, name] of people) {
