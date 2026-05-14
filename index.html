@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Compatibility Test</title>
-    <link rel="stylesheet" href="styles.css?v=14" />
+    <link rel="stylesheet" href="styles.css?v=15" />
   </head>
   <body>
     <nav class="top-bar" aria-label="site sections">
@@ -13,9 +13,7 @@
         <button type="button" data-page-link="calculator">Pair Calculator</button>
         <button type="button" data-page-link="averages">Averages</button>
         <button type="button" data-page-link="selfCheck">Self-Check</button>
-        <button type="button" data-page-link="boyGirl">Boy-Girl</button>
-        <button type="button" data-page-link="boyBoy">Boy-Boy</button>
-        <button type="button" data-page-link="girlGirl">Girl-Girl</button>
+        <button type="button" data-page-link="rankings">Rankings</button>
       </div>
     </nav>
 
@@ -141,82 +139,42 @@
         </section>
       </section>
 
-      <section id="boyGirl" class="page app-shell" aria-labelledby="boy-girl-title">
+      <section id="rankings" class="page app-shell" aria-labelledby="rankings-title">
         <header class="page-heading">
           <p class="eyebrow">rankings</p>
-          <h2 id="boy-girl-title">Boy-Girl Matches</h2>
+          <h2 id="rankings-title">Matches</h2>
         </header>
+        <section class="selector-panel">
+          <label>
+            <span>Match Type</span>
+            <select id="rankingType">
+              <option value="boyGirl">Boy-Girl</option>
+              <option value="boyBoy">Boy-Boy</option>
+              <option value="girlGirl">Girl-Girl</option>
+            </select>
+          </label>
+        </section>
         <section class="rankings-board" aria-label="boy-girl match rankings">
           <article class="match-list-panel">
             <h3>Top Matches</h3>
-            <ol id="boyGirlTopMatches"></ol>
+            <ol id="rankingTopMatches"></ol>
           </article>
           <article class="match-list-panel">
             <h3>Least Compatible Matches</h3>
-            <ol id="boyGirlLeastMatches"></ol>
+            <ol id="rankingLeastMatches"></ol>
           </article>
           <article class="match-list-panel">
             <h3>Top One-Way Matches</h3>
-            <ol id="boyGirlTopSingles"></ol>
+            <ol id="rankingTopSingles"></ol>
           </article>
           <article class="match-list-panel">
             <h3>Least One-Way Matches</h3>
-            <ol id="boyGirlLeastSingles"></ol>
-          </article>
-        </section>
-      </section>
-
-      <section id="boyBoy" class="page app-shell" aria-labelledby="boy-boy-title">
-        <header class="page-heading">
-          <p class="eyebrow">rankings</p>
-          <h2 id="boy-boy-title">Boy-Boy Matches</h2>
-        </header>
-        <section class="rankings-board" aria-label="boy-boy match rankings">
-          <article class="match-list-panel">
-            <h3>Top Matches</h3>
-            <ol id="boyBoyTopMatches"></ol>
-          </article>
-          <article class="match-list-panel">
-            <h3>Least Compatible Matches</h3>
-            <ol id="boyBoyLeastMatches"></ol>
-          </article>
-          <article class="match-list-panel">
-            <h3>Top One-Way Matches</h3>
-            <ol id="boyBoyTopSingles"></ol>
-          </article>
-          <article class="match-list-panel">
-            <h3>Least One-Way Matches</h3>
-            <ol id="boyBoyLeastSingles"></ol>
-          </article>
-        </section>
-      </section>
-
-      <section id="girlGirl" class="page app-shell" aria-labelledby="girl-girl-title">
-        <header class="page-heading">
-          <p class="eyebrow">rankings</p>
-          <h2 id="girl-girl-title">Girl-Girl Matches</h2>
-        </header>
-        <section class="rankings-board" aria-label="girl-girl match rankings">
-          <article class="match-list-panel">
-            <h3>Top Matches</h3>
-            <ol id="girlGirlTopMatches"></ol>
-          </article>
-          <article class="match-list-panel">
-            <h3>Least Compatible Matches</h3>
-            <ol id="girlGirlLeastMatches"></ol>
-          </article>
-          <article class="match-list-panel">
-            <h3>Top One-Way Matches</h3>
-            <ol id="girlGirlTopSingles"></ol>
-          </article>
-          <article class="match-list-panel">
-            <h3>Least One-Way Matches</h3>
-            <ol id="girlGirlLeastSingles"></ol>
+            <ol id="rankingLeastSingles"></ol>
           </article>
         </section>
       </section>
     </main>
 
-    <script src="app.js?v=14"></script>
+    <script src="app.js?v=15"></script>
   </body>
 </html>

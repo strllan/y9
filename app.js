@@ -61,6 +61,7 @@ const byName = new Map(
 const personA = document.querySelector("#personA");
 const personB = document.querySelector("#personB");
 const selfPerson = document.querySelector("#selfPerson");
+const rankingType = document.querySelector("#rankingType");
 const finalScore = document.querySelector("#finalScore");
 const bToA = document.querySelector("#bToA");
 const aToB = document.querySelector("#aToB");
@@ -281,6 +282,26 @@ function renderRankingBoard(prefix, ranked) {
   );
 }
 
+function renderSelectedRankings() {
+  const rankingSets = {
+    boyGirl: {
+      title: "Boy-Girl Matches",
+      ranked: makePairRankings(boys, girls),
+    },
+    boyBoy: {
+      title: "Boy-Boy Matches",
+      ranked: makePairRankings(boys, boys, true),
+    },
+    girlGirl: {
+      title: "Girl-Girl Matches",
+      ranked: makePairRankings(girls, girls, true),
+    },
+  };
+  const selected = rankingSets[rankingType.value];
+  document.querySelector("#rankings-title").textContent = selected.title;
+  renderRankingBoard("ranking", selected.ranked);
+}
+
 function showPage(pageId) {
   document.querySelectorAll(".page").forEach((page) => {
     page.classList.toggle("active", page.id === pageId);
@@ -303,6 +324,7 @@ selfPerson.value = "tony";
 personA.addEventListener("change", renderCalculator);
 personB.addEventListener("change", renderCalculator);
 selfPerson.addEventListener("change", renderSelfCheck);
+rankingType.addEventListener("change", renderSelectedRankings);
 swapButton.addEventListener("click", () => {
   [personA.value, personB.value] = [personB.value, personA.value];
   renderCalculator();
@@ -321,6 +343,4 @@ const girls = people.filter(([group]) => group === "girl").map(([, name]) => nam
 renderCalculator();
 renderAverages();
 renderSelfCheck();
-renderRankingBoard("boyGirl", makePairRankings(boys, girls));
-renderRankingBoard("boyBoy", makePairRankings(boys, boys, true));
-renderRankingBoard("girlGirl", makePairRankings(girls, girls, true));
+renderSelectedRankings();
