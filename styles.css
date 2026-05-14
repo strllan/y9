@@ -119,7 +119,7 @@ select {
 }
 
 .app-shell {
-  width: min(1880px, calc(100% - 32px));
+  width: min(1440px, calc(100% - 32px));
   margin: 0 auto;
   padding: 92px 0 28px;
 }
@@ -161,9 +161,13 @@ select {
 
 .selector-panel {
   width: min(420px, 100%);
-  padding: 12px;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr;
+}
+
+.selector-panel select {
+  min-height: 38px;
 }
 
 .rankings-board {
@@ -373,25 +377,12 @@ tr.match {
   border: 1px solid var(--line);
   background: var(--wash);
   min-width: 0;
-  max-height: min(680px, calc(100svh - 340px));
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 10px 12px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(20, 115, 92, 0.4) transparent;
-}
-
-#averages .match-list-panel {
-  max-height: min(720px, calc(100svh - 240px));
+  padding: 8px 10px;
 }
 
 .match-list-panel h3 {
-  position: sticky;
-  z-index: 1;
-  top: -10px;
-  margin: -10px -12px 8px;
-  padding: 10px 12px 8px;
-  background: rgba(244, 247, 249, 0.96);
+  margin: -8px -10px 6px;
+  padding: 8px 10px 7px;
   border-bottom: 1px solid rgba(23, 32, 42, 0.08);
 }
 
@@ -562,11 +553,6 @@ li:last-child {
   .controls,
   .direction-grid {
     grid-template-columns: 1fr;
-  }
-
-  .match-list-panel,
-  #averages .match-list-panel {
-    max-height: 62svh;
   }
 
   .title-row {
