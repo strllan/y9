@@ -123,8 +123,8 @@ function scorePair(nameA, nameB) {
   };
 }
 
-function percent(value) {
-  return `${value.toFixed(2)}%`;
+function scoreLabel(value) {
+  return value.toFixed(2);
 }
 
 function preferenceLabel(value) {
@@ -140,9 +140,9 @@ function option(name) {
 
 function renderCalculator() {
   const result = scorePair(personA.value, personB.value);
-  bToA.textContent = percent(result.bDirection.total);
-  aToB.textContent = percent(result.aDirection.total);
-  finalScore.textContent = percent(result.final);
+  bToA.textContent = scoreLabel(result.bDirection.total);
+  aToB.textContent = scoreLabel(result.aDirection.total);
+  finalScore.textContent = scoreLabel(result.final);
 
   breakdownRows.replaceChildren(
     ...questions.map((question, index) => {
@@ -154,10 +154,10 @@ function renderCalculator() {
         <td>${questionLabels[question]}</td>
         <td>${preferenceLabel(bRow.want.desired)}</td>
         <td>${bRow.answer.actual}</td>
-        <td class="points">${percent(bRow.points)}</td>
+        <td class="points">${scoreLabel(bRow.points)}</td>
         <td>${preferenceLabel(aRow.want.desired)}</td>
         <td>${aRow.answer.actual}</td>
-        <td class="points">${percent(aRow.points)}</td>
+        <td class="points">${scoreLabel(aRow.points)}</td>
       `;
       return tr;
     }),
@@ -213,16 +213,16 @@ function renderAverages() {
   const oneWayAverageRankings = [...averageRankings].sort((left, right) => right.oneWayAverage - left.oneWayAverage);
 
   renderList("averageTopMatches", averageRankings, (entry) =>
-    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.matchAverage)} average</span>`,
+    `<strong>${entry.name}</strong><span class="match-score">${scoreLabel(entry.matchAverage)} average</span>`,
   );
   renderList("averageLeastMatches", [...averageRankings].reverse(), (entry) =>
-    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.matchAverage)} average</span>`,
+    `<strong>${entry.name}</strong><span class="match-score">${scoreLabel(entry.matchAverage)} average</span>`,
   );
   renderList("averageTopSingles", oneWayAverageRankings, (entry) =>
-    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.oneWayAverage)} average</span>`,
+    `<strong>${entry.name}</strong><span class="match-score">${scoreLabel(entry.oneWayAverage)} average</span>`,
   );
   renderList("averageLeastSingles", [...oneWayAverageRankings].reverse(), (entry) =>
-    `<strong>${entry.name}</strong><span class="match-score">${percent(entry.oneWayAverage)} average</span>`,
+    `<strong>${entry.name}</strong><span class="match-score">${scoreLabel(entry.oneWayAverage)} average</span>`,
   );
 }
 
@@ -242,7 +242,7 @@ function renderSelfCheck() {
       .map(([, name]) => ({ name, score: getOneWayScore(selectedName, name) }))
       .sort((left, right) => right.score - left.score);
 
-  const renderSelfEntry = (entry) => `<strong>${entry.name}</strong><span class="match-score">${percent(entry.score)}</span>`;
+  const renderSelfEntry = (entry) => `<strong>${entry.name}</strong><span class="match-score">${scoreLabel(entry.score)}</span>`;
 
   renderList("selfGirlMatches", rankMatches("girl"), renderSelfEntry);
   renderList("selfBoyMatches", rankMatches("boy"), renderSelfEntry);
@@ -269,16 +269,16 @@ function renderRankingBoard(prefix, ranked) {
     .sort((left, right) => right.score - left.score);
 
   renderList(`${prefix}TopMatches`, ranked, (match) =>
-    `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`,
+    `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${scoreLabel(match.final)}</span>`,
   );
   renderList(`${prefix}LeastMatches`, [...ranked].reverse(), (match) =>
-    `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${percent(match.final)}</span>`,
+    `<strong>${match.a.name}</strong> and <strong>${match.b.name}</strong><span class="match-score">${scoreLabel(match.final)}</span>`,
   );
   renderList(`${prefix}TopSingles`, oneWay, (single) =>
-    `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`,
+    `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${scoreLabel(single.score)}</span>`,
   );
   renderList(`${prefix}LeastSingles`, [...oneWay].reverse(), (single) =>
-    `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${percent(single.score)}</span>`,
+    `<strong>${single.from}</strong> → <strong>${single.to}</strong><span class="match-score">${scoreLabel(single.score)}</span>`,
   );
 }
 
