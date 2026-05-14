@@ -380,6 +380,11 @@ tr.match {
   padding: 8px 10px;
 }
 
+#averages .match-list-panel {
+  max-height: none;
+  overflow: visible;
+}
+
 .match-list-panel h3 {
   margin: -8px -10px 6px;
   padding: 8px 10px 7px;
