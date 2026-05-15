@@ -43,6 +43,7 @@ const people = [
   ["girl", "sophiah", "Y^=M", "R^", "L-SD", "Y-=D", "A^=I", "Y-", "D^SD", "T-KN", "A^=I"],
   ["girl", "angela", "Y^=I", "R-=D", "L-SI", "Y^=M", "A^", "N^=I", "S-DD", "K^TN", "A^=N"],
   ["girl", "issabel", "Y-", "L^=I", "S-LN", "Y^=I", "A^=M", "Y-NN", "D^", "T^=D", "A^=D"],
+  ["girl", "lydia", "N-=D", "L-=N", "S-=D", "N^=M", "A^=N", "N-=I", "D-SN", "K-", "A-=I"],
 ];
 
 const careScores = { D: 5, N: 10, I: 15, M: 40 };
@@ -312,7 +313,9 @@ function showPage(pageId) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-for (const [, name] of people) {
+const selectorPeople = [...people].sort((left, right) => left[1].localeCompare(right[1]));
+
+for (const [, name] of selectorPeople) {
   personA.append(option(name));
   personB.append(option(name));
   selfPerson.append(option(name));

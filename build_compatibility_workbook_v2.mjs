@@ -26,6 +26,7 @@ const people = [
   ["Girl", "sophiah", "Y^=M", "R^", "L-SD", "Y-=D", "A^=1", "Y-", "D^SD", "T-KN", "A^=I"],
   ["Girl", "angela", "Y^=I", "R-=D", "L-SI", "Y^=M", "A^", "N^=I", "S-DD", "K^TN", "A^=N"],
   ["Girl", "issabel", "Y-", "L^=I", "S-LN", "Y^=I", "A^=M", "Y-NN", "D^", "T^=D", "A^=D"],
+  ["Girl", "lydia", "N-=D", "L-=N", "S-=D", "N^=M", "A^=N", "N-=I", "D-SN", "K-", "A-=I"],
 ];
 
 const workbook = Workbook.create();
